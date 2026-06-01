@@ -1,0 +1,13 @@
+# React
+todo-frontend/node_modules/
+todo-frontend/build/
+
+# Spring Boot
+todo/target/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
