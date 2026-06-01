@@ -58,9 +58,18 @@ const List = () => {
     }
   };
 
-  const handleDone = (index) => {
-    const updatedTodos = todos.filter((_, i) => i !== index);
-    setTodos(updatedTodos);
+  const handleDone = async (id) => {
+    try {
+      await API.delete(`/delete/${id}`);
+
+      alert("Todo Deleted Successfully");
+
+      // Todo list reload
+      fetchTodos();
+    } catch (error) {
+      console.log(error);
+      alert("Failed to delete todo");
+    }
   };
 
   return (
@@ -99,7 +108,7 @@ const List = () => {
 
               <p>{todo.work}</p>
 
-              <button className="done-btn" onClick={() => handleDone(index)}>
+              <button className="done-btn" onClick={() => handleDone(todo.id)}>
                 Work Done
               </button>
             </div>

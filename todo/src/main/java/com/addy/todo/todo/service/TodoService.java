@@ -39,4 +39,8 @@ public class TodoService {
 
         return todoRepository.findByUserEmail(email);
     }
+
+ public void deleteTodo(Integer id) {
+    todoRepository.deleteById(id);
+}
 }
