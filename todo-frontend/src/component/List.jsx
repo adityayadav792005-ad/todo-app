@@ -60,7 +60,7 @@ const List = () => {
 
   const handleDone = async (id) => {
     try {
-      await API.delete(`/delete/${id}`);
+      await API.delete(`/todo/delete/${id}`);
 
       alert("Todo Deleted Successfully");
 
