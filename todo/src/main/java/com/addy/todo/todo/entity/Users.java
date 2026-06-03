@@ -1,7 +1,5 @@
 package com.addy.todo.todo.entity;
 
-
-
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,23 +11,30 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
-@Id
-@GeneratedValue(strategy= GenerationType.IDENTITY)
-private Integer id;
-@Column(unique=true)
-private  String email;
-private String password;
-private String name ;
-@OneToMany(mappedBy="user")
-@JsonManagedReference
-@JsonIgnore
-private List <Todo> todo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @NotBlank(message = "email is required")
+    @Email(message = "invalid email format")
+    @Column(unique = true)
+    private String email;
+    @NotBlank(message = "password is required")
+    private String password;
+    @NotBlank(message = "name is required")
+    private String name;
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    @JsonIgnore
+    private List<Todo> todo;
 }
